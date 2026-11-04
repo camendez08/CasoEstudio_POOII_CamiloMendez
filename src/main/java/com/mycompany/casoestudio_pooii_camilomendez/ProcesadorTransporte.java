@@ -16,4 +16,14 @@ public class ProcesadorTransporte {
                         Collectors.counting()
                 ));
     }
+
+    public static Map<Integer, Long> calcularFlujoPorHora(
+            List<RegistroTransporte> registros) {
+
+        return registros.stream()
+                .collect(Collectors.groupingBy(
+                        registro -> registro.timestamp().getHour(),
+                        Collectors.counting()
+                ));
+    }
 }
