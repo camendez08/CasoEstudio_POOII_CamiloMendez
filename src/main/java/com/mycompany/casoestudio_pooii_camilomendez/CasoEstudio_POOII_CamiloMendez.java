@@ -49,5 +49,11 @@ public class CasoEstudio_POOII_CamiloMendez {
 ProcesadorTransporte.calcularAfluenciaPorEstacion(registros)
         .forEach((estacion, cantidad) ->
                 System.out.println(estacion + ": " + cantidad + " entradas"));
+
+System.out.println("\n=== FLUJO POR HORA ===");
+
+ProcesadorTransporte.calcularFlujoPorHora(registros)
+        .forEach((hora, cantidad) ->
+                System.out.println(hora + ":00 -> " + cantidad + " registros"));
     }
 }
