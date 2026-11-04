@@ -44,5 +44,10 @@ public class CasoEstudio_POOII_CamiloMendez {
         System.out.println("Registros cargados: " + registros.size());
 
         registros.forEach(System.out::println);
+        System.out.println("\n=== AFLUENCIA POR ESTACION ===");
+
+ProcesadorTransporte.calcularAfluenciaPorEstacion(registros)
+        .forEach((estacion, cantidad) ->
+                System.out.println(estacion + ": " + cantidad + " entradas"));
     }
 }
