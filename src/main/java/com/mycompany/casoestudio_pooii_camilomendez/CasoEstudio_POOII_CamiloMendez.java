@@ -1,16 +1,48 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.casoestudio_pooii_camilomendez;
 
-/**
- *
- * @author cmendez
- */
+import java.time.LocalDateTime;
+import java.util.List;
+
 public class CasoEstudio_POOII_CamiloMendez {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        List<RegistroTransporte> registros = List.of(
+                
+            new RegistroTransporte(
+                "U001", "R1", "Estacion Centro", "entrada",
+                LocalDateTime.of(2026, 11, 4, 7, 30)
+            ),
+
+            new RegistroTransporte(
+                "U002", "R1", "Estacion Centro", "entrada",
+                LocalDateTime.of(2026, 11, 4, 7, 35)
+            ),
+
+            new RegistroTransporte(
+                "U001", "R1", "Estacion Norte", "salida",
+                LocalDateTime.of(2026, 11, 4, 8, 5)
+            ),
+
+            new RegistroTransporte(
+                "U003", "R2", "Estacion Sur", "entrada",
+                LocalDateTime.of(2026, 11, 4, 8, 15)
+            ),
+
+            new RegistroTransporte(
+                "U004", "R2", "Estacion Sur", "entrada",
+                LocalDateTime.of(2026, 11, 4, 8, 20)
+            ),
+
+            new RegistroTransporte(
+                "U003", "R2", "Estacion Centro", "salida",
+                LocalDateTime.of(2026, 11, 4, 9, 0)
+            )
+        );
+
+        System.out.println("=== TECNOMOVIL DATA ===");
+        System.out.println("Registros cargados: " + registros.size());
+
+        registros.forEach(System.out::println);
     }
 }
