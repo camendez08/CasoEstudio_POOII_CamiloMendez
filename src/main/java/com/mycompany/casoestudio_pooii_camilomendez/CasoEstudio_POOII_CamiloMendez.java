@@ -75,5 +75,13 @@ ProcesadorTransporte.identificarRutasMasUtilizadas(registros)
                 System.out.println(
                         ruta + " con " + cantidad + " registros"
                 ));
+
+System.out.println("\n=== PATRONES DE VIAJE POR USUARIO ===");
+
+ProcesadorTransporte.obtenerPatronesViajePorUsuario(registros)
+        .forEach((usuario, estaciones) ->
+                System.out.println(
+                        usuario + " -> " + String.join(" -> ", estaciones)
+                ));
         }
 }

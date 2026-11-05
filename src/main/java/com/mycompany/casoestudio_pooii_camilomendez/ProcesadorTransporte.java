@@ -54,5 +54,19 @@ public class ProcesadorTransporte {
                     Map.Entry::getKey,
                     Map.Entry::getValue
             ));
+    
     }
+    public static Map<String, List<String>> obtenerPatronesViajePorUsuario(
+        List<RegistroTransporte> registros) {
+
+    return registros.stream()
+            .sorted((r1, r2) -> r1.timestamp().compareTo(r2.timestamp()))
+            .collect(Collectors.groupingBy(
+                    RegistroTransporte::idUsuario,
+                    Collectors.mapping(
+                            RegistroTransporte::estacion,
+                            Collectors.toUnmodifiableList()
+                    )
+            ));
+}
 }
