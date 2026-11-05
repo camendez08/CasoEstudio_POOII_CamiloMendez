@@ -93,5 +93,16 @@ System.out.printf(
         "Tiempo promedio: %.2f minutos%n",
         tiempoPromedio
 );
+System.out.println("\n=== ESTADO DE OCUPACION DE RUTAS ===");
+
+long umbralOcupacion = 3;
+
+ProcesadorTransporte.detectarSobrecargaRutas(
+        registros,
+        umbralOcupacion
+).forEach((ruta, estado) ->
+        System.out.println(
+                ruta + " -> " + estado
+        ));
         }
 }

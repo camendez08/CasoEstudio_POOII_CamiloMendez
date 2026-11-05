@@ -100,4 +100,18 @@ public class ProcesadorTransporte {
             .average()
             .orElse(0.0);
            }
+    public static Map<String, String> detectarSobrecargaRutas(
+        List<RegistroTransporte> registros,
+        long umbral) {
+
+    return calcularUsoPorRuta(registros)
+            .entrySet()
+            .stream()
+            .collect(Collectors.toUnmodifiableMap(
+                    Map.Entry::getKey,
+                    entrada -> entrada.getValue() > umbral
+                            ? "CRITICA"
+                            : "NORMAL"
+            ));
+}
 }
