@@ -26,4 +26,33 @@ public class ProcesadorTransporte {
                         Collectors.counting()
                 ));
     }
+    
+    public static Map<String, Long> calcularUsoPorRuta(
+        List<RegistroTransporte> registros) {
+
+    return registros.stream()
+            .collect(Collectors.groupingBy(
+                    RegistroTransporte::ruta,
+                    Collectors.counting()
+            ));
+    }
+    public static Map<String, Long> identificarRutasMasUtilizadas(
+        List<RegistroTransporte> registros) {
+
+    Map<String, Long> usoPorRuta = calcularUsoPorRuta(registros);
+
+    long maximoUso = usoPorRuta.values()
+            .stream()
+            .mapToLong(Long::longValue)
+            .max()
+            .orElse(0);
+
+    return usoPorRuta.entrySet()
+            .stream()
+            .filter(entrada -> entrada.getValue() == maximoUso)
+            .collect(Collectors.toUnmodifiableMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue
+            ));
+    }
 }

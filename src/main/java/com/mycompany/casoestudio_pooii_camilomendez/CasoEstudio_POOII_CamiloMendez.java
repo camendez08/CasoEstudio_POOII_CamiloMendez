@@ -2,6 +2,7 @@ package com.mycompany.casoestudio_pooii_camilomendez;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class CasoEstudio_POOII_CamiloMendez {
 
@@ -12,6 +13,11 @@ public class CasoEstudio_POOII_CamiloMendez {
             new RegistroTransporte(
                 "U001", "R1", "Estacion Centro", "entrada",
                 LocalDateTime.of(2026, 11, 4, 7, 30)
+            ),
+            
+             new RegistroTransporte(
+                "U001", "R1", "Estacion Centro", "entrada",
+                LocalDateTime.of(2026, 11, 5, 7, 30)
             ),
 
             new RegistroTransporte(
@@ -55,5 +61,19 @@ System.out.println("\n=== FLUJO POR HORA ===");
 ProcesadorTransporte.calcularFlujoPorHora(registros)
         .forEach((hora, cantidad) ->
                 System.out.println(hora + ":00 -> " + cantidad + " registros"));
-    }
+
+System.out.println("\n=== USO POR RUTA ===");
+
+ProcesadorTransporte.calcularUsoPorRuta(registros)
+        .forEach((ruta, cantidad) ->
+                System.out.println(ruta + " -> " + cantidad + " registros"));
+
+System.out.println("\n=== RUTAS MAS UTILIZADAS ===");
+
+ProcesadorTransporte.identificarRutasMasUtilizadas(registros)
+        .forEach((ruta, cantidad) ->
+                System.out.println(
+                        ruta + " con " + cantidad + " registros"
+                ));
+        }
 }
