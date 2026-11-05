@@ -3,6 +3,8 @@ package com.mycompany.casoestudio_pooii_camilomendez;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.time.Duration;
+import java.util.Comparator;
 
 public class ProcesadorTransporte {
 
@@ -68,5 +70,34 @@ public class ProcesadorTransporte {
                             Collectors.toUnmodifiableList()
                     )
             ));
-}
+        }
+    public static double calcularTiempoPromedioEntreEstaciones(
+        List<RegistroTransporte> registros) {
+
+    Map<String, List<RegistroTransporte>> registrosPorUsuario =
+            registros.stream()
+                    .collect(Collectors.groupingBy(
+                            RegistroTransporte::idUsuario
+                    ));
+
+    return registrosPorUsuario.values()
+            .stream()
+            .flatMap(lista -> {
+                List<RegistroTransporte> ordenados = lista.stream()
+                        .sorted(Comparator.comparing(
+                                RegistroTransporte::timestamp))
+                        .toList();
+
+                return java.util.stream.IntStream
+                        .range(0, ordenados.size() - 1)
+                        .mapToLong(i -> Duration.between(
+                                ordenados.get(i).timestamp(),
+                                ordenados.get(i + 1).timestamp()
+                        ).toMinutes())
+                        .boxed();
+            })
+            .mapToLong(Long::longValue)
+            .average()
+            .orElse(0.0);
+           }
 }

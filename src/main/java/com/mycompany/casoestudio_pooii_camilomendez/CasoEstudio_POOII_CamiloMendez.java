@@ -17,7 +17,7 @@ public class CasoEstudio_POOII_CamiloMendez {
             
              new RegistroTransporte(
                 "U001", "R1", "Estacion Centro", "entrada",
-                LocalDateTime.of(2026, 11, 5, 7, 30)
+                LocalDateTime.of(2026, 11, 4, 8, 30)
             ),
 
             new RegistroTransporte(
@@ -83,5 +83,15 @@ ProcesadorTransporte.obtenerPatronesViajePorUsuario(registros)
                 System.out.println(
                         usuario + " -> " + String.join(" -> ", estaciones)
                 ));
+System.out.println("\n=== TIEMPO PROMEDIO ENTRE ESTACIONES ===");
+
+double tiempoPromedio =
+        ProcesadorTransporte
+                .calcularTiempoPromedioEntreEstaciones(registros);
+
+System.out.printf(
+        "Tiempo promedio: %.2f minutos%n",
+        tiempoPromedio
+);
         }
 }
